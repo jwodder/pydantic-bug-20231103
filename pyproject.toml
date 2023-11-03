@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 name = "pydantic-bug-20231103"
 version = "0.0.0"
 description = "MVCE for a bug in Pydantic's mypy plugin"
-#readme = "README.md"
+readme = "README.md"
 requires-python = ">=3.8"
 license = "MIT"
 license-files = { paths = ["LICENSE"] }
