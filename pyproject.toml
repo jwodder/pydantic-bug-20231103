@@ -1,0 +1,55 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pydantic-bug-20231103"
+version = "0.0.0"
+description = "MVCE for a bug in Pydantic's mypy plugin"
+#readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+license-files = { paths = ["LICENSE"] }
+authors = [
+    { name = "John Thorvald Wodder II", email = "pydantic-bug-20231103@varonathe.org" }
+]
+
+dependencies = ["pydantic ~= 2.0"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/mvce.py",
+    "tox.ini",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["mvce.py"]
+
+[tool.hatch.envs.default]
+python = "3"
+
+[tool.hatch.envs.typing]
+dependencies = ["mypy"]
+
+[tool.hatch.envs.typing.scripts]
+check = "mypy mvce.py"
+
+[tool.mypy]
+allow_incomplete_defs = false
+allow_untyped_defs = false
+ignore_missing_imports = false
+no_implicit_optional = true
+implicit_reexport = false
+local_partial_types = true
+pretty = true
+show_error_codes = true
+show_traceback = true
+strict_equality = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unreachable = true
+plugins = ["pydantic.mypy"]
+
+[tool.pydantic-mypy]
+init_forbid_extra = true
+warn_required_dynamic_aliases = true
