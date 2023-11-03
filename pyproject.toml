@@ -33,6 +33,7 @@ dependencies = ["mypy"]
 
 [tool.hatch.envs.typing.scripts]
 check = "mypy mvce.py"
+info = "python -c 'import pydantic.version; print(pydantic.version.version_info())'"
 
 [tool.mypy]
 allow_incomplete_defs = false
